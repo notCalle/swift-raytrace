@@ -7,6 +7,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(pointTests.allTests),
         testCase(vectorTests.allTests),
         testCase(rayTests.allTests),
+        testCase(intersectionTests.allTests),
     ]
 }
 #endif
