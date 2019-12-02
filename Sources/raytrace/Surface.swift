@@ -7,9 +7,13 @@
 
 class Surface {
     let intersect: (Ray) -> [Double]
+    let normalAt: (Point) -> Vector
 
-    init(intersect: @escaping (Ray) -> [Double]) {
+    init(intersect: @escaping (Ray) -> [Double],
+         normalAt: @escaping (Point) -> Vector)
+    {
         self.intersect = intersect
+        self.normalAt = normalAt
     }
 }
 

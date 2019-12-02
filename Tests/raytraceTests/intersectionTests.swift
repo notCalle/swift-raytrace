@@ -3,11 +3,13 @@ import XCTest
 
 final class intersectionTests: XCTestCase {
     func testSurface() -> Surface {
-        Surface { ray in
+        Surface(intersect: { ray in
             guard ray.direction.x !=~ 0 else { return [] }
 
             return [1.0]
-        }
+        }, normalAt: { pt in
+            pt - point(0)
+        })
     }
 
     func testIntersectionHit() {

@@ -19,7 +19,7 @@ extension Surface {
     ///     |O + tD - 0|^2 - 1 = 0
     ///
     static func sphere() -> Surface {
-        Surface { ray in
+        Surface(intersect: { ray in
             let l = ray.origin - point(0)
             let d = ray.direction
             let a = simd_dot(d, d)
@@ -29,6 +29,8 @@ extension Surface {
             guard let (t0, t1) = quadratic(a, b, c) else { return [] }
 
             return [t0, t1]
-        }
+        }, normalAt: { pt in
+            pt - point(0)
+        })
     }
 }

@@ -9,12 +9,14 @@ final class sphereTests: XCTestCase {
         let r = Ray(origin: point(0,0,2), direction: vector(0,0,-1))
         let isects = s.intersections(with: r)
         let expect: [Double] = [1, 3]
+        let normals = [vector(0,0,1), vector(0,0,-1)]
 
         XCTAssertTrue(isects.count == 2)
 
-        for (isect, expected) in zip(isects, expect) {
+        for (isect, (expected, normal)) in zip(isects, zip(expect, normals)) {
             XCTAssertEqual(isect.surface, self.s)
             XCTAssertEqual(isect.t, expected)
+            XCTAssertTrue(self.s.normalAt(r.position(at: isect.t)) ==~ normal)
         }
     }
 
@@ -22,12 +24,14 @@ final class sphereTests: XCTestCase {
         let r = Ray(origin: point(0,0,-2), direction: vector(0,0,-1))
         let isects = s.intersections(with: r)
         let expect: [Double] = [-3, -1]
+        let normals = [vector(0,0,1), vector(0,0,-1)]
 
         XCTAssertTrue(isects.count == 2)
 
-        for (isect, expected) in zip(isects, expect) {
+        for (isect, (expected, normal)) in zip(isects, zip(expect, normals)) {
             XCTAssertEqual(isect.surface, self.s)
             XCTAssertEqual(isect.t, expected)
+            XCTAssertTrue(self.s.normalAt(r.position(at: isect.t)) ==~ normal)
         }
     }
 
@@ -35,12 +39,14 @@ final class sphereTests: XCTestCase {
         let r = Ray(origin: point(0,0,0), direction: vector(0,0,-1))
         let isects = s.intersections(with: r)
         let expect: [Double] = [-1, 1]
+        let normals = [vector(0,0,1), vector(0,0,-1)]
 
         XCTAssertTrue(isects.count == 2)
 
-        for (isect, expected) in zip(isects, expect) {
+        for (isect, (expected, normal)) in zip(isects, zip(expect, normals)) {
             XCTAssertEqual(isect.surface, self.s)
             XCTAssertEqual(isect.t, expected)
+            XCTAssertTrue(self.s.normalAt(r.position(at: isect.t)) ==~ normal)
         }
     }
 
@@ -48,12 +54,14 @@ final class sphereTests: XCTestCase {
         let r = Ray(origin: point(0,1,2), direction: vector(0,0,-1))
         let isects = s.intersections(with: r)
         let expect: [Double] = [2, 2]
+        let normals = [vector(0,1,0), vector(0,1,0)]
 
         XCTAssertTrue(isects.count == 2)
 
-        for (isect, expected) in zip(isects, expect) {
+        for (isect, (expected, normal)) in zip(isects, zip(expect, normals)) {
             XCTAssertEqual(isect.surface, self.s)
             XCTAssertEqual(isect.t, expected)
+            XCTAssertTrue(self.s.normalAt(r.position(at: isect.t)) ==~ normal)
         }
     }
 
