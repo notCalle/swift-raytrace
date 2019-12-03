@@ -20,7 +20,7 @@ extension Surface {
     ///
     static func sphere() -> Surface {
         Surface(intersect: { ray in
-            let l = ray.origin - point(0)
+            let l = ray.origin - .point(0)
             let d = ray.direction
             let a = simd_dot(d, d)
             let b = 2 * simd_dot(d, l)
@@ -30,7 +30,7 @@ extension Surface {
 
             return [t0, t1]
         }, normalAt: { pt in
-            pt - point(0)
+            pt - .point(0)
         })
     }
 }

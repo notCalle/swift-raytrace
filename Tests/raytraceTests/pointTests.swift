@@ -3,7 +3,7 @@ import XCTest
 
 final class pointTests: XCTestCase {
     func testMakePoint() {
-        let p = point(1,2,3)
+        let p: Point = .point(1,2,3)
 
         XCTAssertTrue(p.isPoint)
         XCTAssertEqual(p.x, 1)

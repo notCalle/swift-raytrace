@@ -3,7 +3,7 @@ import XCTest
 
 final class vectorTests: XCTestCase {
     func testMakeVector() {
-        let v = vector(1,2,3)
+        let v: Vector = .vector(1,2,3)
 
         XCTAssertTrue(v.isVector)
         XCTAssertEqual(v.x, 1)

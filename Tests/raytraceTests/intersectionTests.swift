@@ -8,13 +8,13 @@ final class intersectionTests: XCTestCase {
 
             return [1.0]
         }, normalAt: { pt in
-            pt - point(0)
+            pt - .point(0)
         })
     }
 
     func testIntersectionHit() {
         let s = testSurface()
-        let r = Ray(origin: point(0,0,0), direction: vector(1,0,0))
+        let r = Ray(origin: .point(0,0,0), direction: .vector(1,0,0))
         let isects = s.intersections(with: r)
 
         XCTAssertTrue(isects.count == 1)
@@ -24,7 +24,7 @@ final class intersectionTests: XCTestCase {
 
     func testIntersectionMiss() {
         let s = testSurface()
-        let r = Ray(origin: point(0,0,0), direction: vector(0,1,0))
+        let r = Ray(origin: .point(0,0,0), direction: .vector(0,1,0))
         let isects = s.intersections(with: r)
 
         XCTAssertTrue(isects.count == 0)

@@ -6,10 +6,10 @@ final class sphereTests: XCTestCase {
     let s = Surface.sphere()
 
     func testCenterInfront() {
-        let r = Ray(origin: point(0,0,2), direction: vector(0,0,-1))
+        let r = Ray(origin: .point(0,0,2), direction: .vector(0,0,-1))
         let isects = s.intersections(with: r)
         let expect: [Double] = [1, 3]
-        let normals = [vector(0,0,1), vector(0,0,-1)]
+        let normals: [Vector] = [.vector(0,0,1), .vector(0,0,-1)]
 
         XCTAssertTrue(isects.count == 2)
 
@@ -21,10 +21,10 @@ final class sphereTests: XCTestCase {
     }
 
     func testCenterBehind() {
-        let r = Ray(origin: point(0,0,-2), direction: vector(0,0,-1))
+        let r = Ray(origin: .point(0,0,-2), direction: .vector(0,0,-1))
         let isects = s.intersections(with: r)
         let expect: [Double] = [-3, -1]
-        let normals = [vector(0,0,1), vector(0,0,-1)]
+        let normals: [Vector] = [.vector(0,0,1), .vector(0,0,-1)]
 
         XCTAssertTrue(isects.count == 2)
 
@@ -36,10 +36,10 @@ final class sphereTests: XCTestCase {
     }
 
     func testCenterInside() {
-        let r = Ray(origin: point(0,0,0), direction: vector(0,0,-1))
+        let r = Ray(origin: .point(0,0,0), direction: .vector(0,0,-1))
         let isects = s.intersections(with: r)
         let expect: [Double] = [-1, 1]
-        let normals = [vector(0,0,1), vector(0,0,-1)]
+        let normals: [Vector] = [.vector(0,0,1), .vector(0,0,-1)]
 
         XCTAssertTrue(isects.count == 2)
 
@@ -51,10 +51,10 @@ final class sphereTests: XCTestCase {
     }
 
     func testTangential() {
-        let r = Ray(origin: point(0,1,2), direction: vector(0,0,-1))
+        let r = Ray(origin: .point(0,1,2), direction: .vector(0,0,-1))
         let isects = s.intersections(with: r)
         let expect: [Double] = [2, 2]
-        let normals = [vector(0,1,0), vector(0,1,0)]
+        let normals: [Vector] = [.vector(0,1,0), .vector(0,1,0)]
 
         XCTAssertTrue(isects.count == 2)
 
@@ -66,7 +66,7 @@ final class sphereTests: XCTestCase {
     }
 
     func testMiss() {
-        let r = Ray(origin: point(0,0,2), direction: vector(0,-1,0))
+        let r = Ray(origin: .point(0,0,2), direction: .vector(0,-1,0))
         let isects = s.intersections(with: r)
 
         XCTAssertTrue(isects.count == 0)

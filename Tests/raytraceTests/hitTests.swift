@@ -8,24 +8,24 @@ final class hitTests: XCTestCase {
 
             return [1.0]
         }, normalAt: { pt in
-            pt - point(0)
+            pt - .point(0)
         })
     }
 
     func testHit() {
         let s = testSurface()
-        let r = Ray(origin: point(0,0,0), direction: vector(1,0,0))
+        let r = Ray(origin: .point(0,0,0), direction: .vector(1,0,0))
         let hit = r.hit(s)
 
         XCTAssertNotNil(hit)
         XCTAssertEqual(hit!.surface, s)
-        XCTAssertTrue(hit!.position ==~ point(1,0,0))
-        XCTAssertTrue(hit!.normal ==~ vector(1,0,0))
+        XCTAssertTrue(hit!.position ==~ .point(1,0,0))
+        XCTAssertTrue(hit!.normal ==~ .vector(1,0,0))
     }
 
     func testMiss() {
         let s = testSurface()
-        let r = Ray(origin: point(0,0,0), direction: vector(0,1,0))
+        let r = Ray(origin: .point(0,0,0), direction: .vector(0,1,0))
         let hit = r.hit(s)
 
         XCTAssertNil(hit)
