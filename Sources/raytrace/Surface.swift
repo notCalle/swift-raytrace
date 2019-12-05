@@ -8,6 +8,7 @@
 class Surface {
     let intersect: (Ray) -> [Double]
     let normalAt: (Point) -> Vector
+    var transform = Transform.identity
 
     init(intersect: @escaping (Ray) -> [Double],
          normalAt: @escaping (Point) -> Vector)

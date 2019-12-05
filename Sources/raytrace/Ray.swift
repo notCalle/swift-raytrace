@@ -23,4 +23,8 @@ struct Ray {
     func position(at t: Double) -> Point {
         origin + direction * t
     }
+
+    func transformed(by xform: Transform) -> Ray {
+        Ray(origin: xform * origin, direction: xform * direction)
+    }
 }
