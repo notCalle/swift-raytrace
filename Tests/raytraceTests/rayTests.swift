@@ -16,6 +16,12 @@ final class rayTests: XCTestCase {
         XCTAssertTrue(r.direction ==~ .vector(sqrt(1/3)))
     }
 
+    func testRayPositionAt() {
+        let r = Ray(origin: .point(0,0,0), direction: .vector(1,1,1))
+        let p = r.position(at: 2)
+        XCTAssertTrue(p ==~ .point(sqrt(1/3)*2))
+    }
+
     static var allTests = [
         ("testMakeRayOriginDirection", testMakeRayOriginDirection),
         ("testMakeRayFromToward", testMakeRayFromToward),

@@ -12,11 +12,17 @@ struct Ray {
     let direction: Vector
 
     init(origin: Point, direction: Vector) {
+        assert(origin.isPoint)
+        assert(direction.isVector)
+
         self.origin = origin
         self.direction = simd_normalize(direction)
     }
 
     init(from: Point, toward: Point) {
+        assert(from.isPoint)
+        assert(toward.isPoint)
+        
         self.init(origin: from, direction: toward - from)
     }
 
