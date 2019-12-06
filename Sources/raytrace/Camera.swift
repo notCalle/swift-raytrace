@@ -12,7 +12,7 @@ struct Camera {
 
     let focalLength: Double
 
-    func render(world: Surface, onto canvas: Canvas) {
+    func render(world: Surface, with lights: [Light], onto canvas: Canvas) {
         let height = Double(canvas.height)
         let width = Double(canvas.width)
         let size = 1/min(height, width)
@@ -25,8 +25,13 @@ struct Camera {
                     .transformed(by: self.transform)
 
                 if let hit = ray.hit(world) {
-                    let shade = Float(fabs(simd_dot(hit.normal, -ray.direction)))
-                    canvas.set(x: x, y: y, .gray(shade))
+                    let shades: [Pixel] = lights.map { (light: Light) in
+                        let color = light.illumination(for: hit)
+                        let lightV = light.direction(to: hit)
+                        let diffuse = Float(simd_dot(-lightV, hit.normal))
+                        return color * diffuse
+                    }
+                    canvas.set(x: x, y: y, shades.reduce(.black, +))
                 }
             }
         }
