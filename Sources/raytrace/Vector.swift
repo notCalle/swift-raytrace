@@ -22,5 +22,9 @@ extension Vector {
         vector(d, d, d)
     }
 
+    static let axisX = vector(1,0,0)
+    static let axisY = vector(0,1,0)
+    static let axisZ = vector(0,0,1)
+
     var isVector: Bool { w ==~ 0.0 }
 }

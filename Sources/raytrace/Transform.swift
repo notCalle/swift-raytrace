@@ -19,4 +19,13 @@ extension Transform {
                            .vector(0,0,1),
                            position)
     }
+
+    static func quaternion(_ quatd: simd_quatd) -> Transform {
+        simd_matrix4x4(quatd)
+    }
+
+    static func rotate(by angle: Double, around axis: Vector) -> Transform {
+        assert(axis.isVector)
+        return quaternion(simd_quaternion(angle, simd_make_double3(axis)))
+    }
 }
