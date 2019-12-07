@@ -3,7 +3,7 @@ import Runes
 @testable import raytrace
 
 final class sphereTests: XCTestCase {
-    let s = Surface.sphere()
+    let s = Sphere()
 
     func testCenterInfront() {
         let r = Ray(origin: .point(0,0,2), direction: .vector(0,0,-1))
@@ -16,7 +16,7 @@ final class sphereTests: XCTestCase {
         for (isect, (expected, normal)) in zip(isects, zip(expect, normals)) {
             XCTAssertEqual(isect.surface, self.s)
             XCTAssertEqual(isect.t, expected)
-            XCTAssertTrue(self.s.normalAt(r.position(at: isect.t)) ==~ normal)
+            XCTAssertTrue(self.s.normal(at: r.position(at: isect.t)) ==~ normal)
         }
     }
 
@@ -31,7 +31,7 @@ final class sphereTests: XCTestCase {
         for (isect, (expected, normal)) in zip(isects, zip(expect, normals)) {
             XCTAssertEqual(isect.surface, self.s)
             XCTAssertEqual(isect.t, expected)
-            XCTAssertTrue(self.s.normalAt(r.position(at: isect.t)) ==~ normal)
+            XCTAssertTrue(self.s.normal(at: r.position(at: isect.t)) ==~ normal)
         }
     }
 
@@ -46,7 +46,7 @@ final class sphereTests: XCTestCase {
         for (isect, (expected, normal)) in zip(isects, zip(expect, normals)) {
             XCTAssertEqual(isect.surface, self.s)
             XCTAssertEqual(isect.t, expected)
-            XCTAssertTrue(self.s.normalAt(r.position(at: isect.t)) ==~ normal)
+            XCTAssertTrue(self.s.normal(at: r.position(at: isect.t)) ==~ normal)
         }
     }
 
@@ -61,7 +61,7 @@ final class sphereTests: XCTestCase {
         for (isect, (expected, normal)) in zip(isects, zip(expect, normals)) {
             XCTAssertEqual(isect.surface, self.s)
             XCTAssertEqual(isect.t, expected)
-            XCTAssertTrue(self.s.normalAt(r.position(at: isect.t)) ==~ normal)
+            XCTAssertTrue(self.s.normal(at: r.position(at: isect.t)) ==~ normal)
         }
     }
 

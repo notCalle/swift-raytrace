@@ -2,18 +2,20 @@ import XCTest
 @testable import raytrace
 
 final class intersectionTests: XCTestCase {
-    func testSurface() -> Surface {
-        Surface(intersect: { ray in
+    class TestSurface: Surface {
+        override func intersect(with ray: Ray) -> [Double] {
             guard ray.direction.x !=~ 0 else { return [] }
 
             return [1.0]
-        }, normalAt: { pt in
-            pt - .point(0)
-        })
+        }
+
+        override func normal(at position: Point) -> Vector {
+            position - .point(0)
+        }
     }
 
     func testIntersectionHit() {
-        let s = testSurface()
+        let s = TestSurface()
         let r = Ray(origin: .point(0,0,0), direction: .vector(1,0,0))
         let isects = s.intersections(with: r)
 
@@ -23,7 +25,7 @@ final class intersectionTests: XCTestCase {
     }
 
     func testIntersectionMiss() {
-        let s = testSurface()
+        let s = TestSurface()
         let r = Ray(origin: .point(0,0,0), direction: .vector(0,1,0))
         let isects = s.intersections(with: r)
 

@@ -19,7 +19,7 @@ extension Ray {
 
         let s = hit.surface
         let p = position(at: hit.t)
-        let n = s.normalAt(p)
+        let n = s.normal(at: p)
 
         return Hit(surface: s, position: p, normal: n)
     }
