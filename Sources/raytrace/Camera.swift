@@ -25,11 +25,12 @@ struct Camera: Transformable {
                     .transformed(by: self.transform)
 
                 if let hit = ray.hit(world) {
-                    let shades: [Pixel] = lights.map { (light: Light) in
-                        let color = light.illumination(for: hit)
-                        let lightV = light.direction(to: hit)
-                        let diffuse = Float(simd_dot(-lightV, hit.normal))
-                        return color * diffuse
+                    let shades: [Pixel] = lights.compactMap { (light: Light) in
+                        guard let lighting = light.lighting(for: hit, in: world)
+                            else { return nil }
+                        let diffuse = Float(simd_dot(-lighting.direction,
+                                                     hit.normal))
+                        return lighting.illumination * diffuse
                     }
                     canvas.set(x: x, y: y, shades.reduce(.black, +))
                 }
