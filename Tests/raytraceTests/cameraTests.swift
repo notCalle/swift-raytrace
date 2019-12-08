@@ -8,7 +8,7 @@ final class cameraTests: XCTestCase {
         let surface = Sphere()
         let lights = [DistantLight()]
 
-        camera.transform = .translate(to: .point(0,0,-3))
+        camera.translate(to: .point(0,0,-3))
         camera.render(world: surface, with: lights, onto: canvas)
 
         XCTAssertEqual(canvas.get(x: 0, y: 0), .gray(0))
@@ -31,7 +31,7 @@ final class cameraTests: XCTestCase {
                        transform: .translate(to: .point(0,-1,-3))),
         ] as [Light]
 
-        camera.transform = .translate(to: .point(0,0,-3))
+        camera.translate(to: .point(0,0,-3))
         camera.render(world: surface, with: lights, onto: canvas)
         let image = canvas.image
         XCTAssertNotNil(image)
@@ -60,7 +60,7 @@ final class cameraTests: XCTestCase {
             return Group(s1, s2, s3)
         }
 
-        camera.transform = .translate(to: .point(0,0,-3))
+        camera.translate(to: .point(0,0,-3))
         camera.render(world: group, with: lights, onto: canvas)
 
         let image = canvas.image

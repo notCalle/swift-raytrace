@@ -7,7 +7,7 @@
 
 import simd
 
-protocol Light {
+protocol Light: Transformable {
     var color: Pixel { get }
     var power: Float { get }
     var transform: Transform { get set }

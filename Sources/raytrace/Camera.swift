@@ -7,7 +7,7 @@
 
 import simd
 
-struct Camera {
+struct Camera: Transformable {
     var transform = Transform.identity
 
     let focalLength: Double

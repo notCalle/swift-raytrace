@@ -5,7 +5,7 @@
 //  Created by Calle Englund on 2019-12-01.
 //
 
-class Surface {
+class Surface: Transformable {
     var transform = Transform.identity
 
     func intersections(with ray: Ray) -> [Intersection] {
