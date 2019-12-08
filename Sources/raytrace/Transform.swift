@@ -24,8 +24,13 @@ extension Transform {
         simd_matrix4x4(quatd)
     }
 
+    /// Create a rotation matrix
+    /// 
+    /// - Parameters:
+    ///   - angle: rotation, in units of tau
+    ///   - axis: vector, around witch the rotation takes place
     static func rotate(by angle: Double, around axis: Vector) -> Transform {
         assert(axis.isVector)
-        return quaternion(simd_quaternion(angle, simd_make_double3(axis)))
+        return quaternion(simd_quaternion(angle * .tau, simd_make_double3(axis)))
     }
 }
